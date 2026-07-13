@@ -1,4 +1,4 @@
-let i=0;
+تحlet i=0;
 let score=0;
 
 let secondChance=false;
@@ -75,15 +75,6 @@ btn.textContent=answer;
 
 btn.onclick=function(){
 
-checkAnswer(index);
-
-};
-
-answers.appendChild(btn);
-
-});
-
-}
 function checkAnswer(index){
 
 const correct=(index===questions[i].c);
@@ -104,6 +95,7 @@ correctSound.play().catch(()=>{});
 
 message.className="correct";
 message.textContent="✅ آفرین! پاسخ درست بود.";
+message.style.display="block";
 
 secondChance=false;
 
@@ -114,25 +106,34 @@ message.style.display="none";
 i++;
 
 if(i>=questions.length){
-
 endGame(true);
-
 }else{
-
 showQuestion();
-
 }
 
 },1200);
 
 }else{
 
-wrongSound.currentTime=0;
-wrongSound.play().catch(()=>{});
-
 if(!secondChance){
 
 secondChance=true;
+
+wrongSound.currentTime=0;
+wrongSound.play().catch(()=>{});
+
+message.className="wrong";
+message.textContent="❌ اشکالی ندارد، یک بار دیگر فکر کن.";
+message.style.display="block";
+
+setTimeout(function(){
+
+message.style.display="none";
+showQuestion();
+
+},1500);
+
+}else{
 
 secondChance=false;
 
@@ -147,33 +148,6 @@ showQuestion();
 }
 
 },500);
-
-}else{
-
-secondChance=false;
-
-message.className="wrong";
-message.textContent="❌ پاسخ نادرست بود.";
-
-message.style.display="block";
-
-setTimeout(function(){
-
-message.style.display="none";
-
-i++;
-
-if(i>=questions.length){
-
-endGame(true);
-
-}else{
-
-showQuestion();
-
-}
-
-},1200);
 
 }
 
