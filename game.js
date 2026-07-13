@@ -134,18 +134,19 @@ if(!secondChance){
 
 secondChance=true;
 
-message.className="wrong";
-message.textContent="❌ اشکالی ندارد، یک بار دیگر فکر کن.";
-
-message.style.display="block";
+secondChance=false;
 
 setTimeout(function(){
 
-message.style.display="none";
+i++;
 
+if(i>=questions.length){
+endGame(true);
+}else{
 showQuestion();
+}
 
-},1500);
+},500);
 
 }else{
 
