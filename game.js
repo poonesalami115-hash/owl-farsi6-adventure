@@ -25,12 +25,7 @@ const wrongSound=new Audio("wrong.m4a");
 startBtn.onclick=startGame;
 function startGame(){
 
-if(localStorage.getItem("finishedQuiz")=="yes"){
 
-alert("شما قبلاً این آزمون را انجام داده‌اید.");
-return;
-
-}
 
 if(playerName.value.trim()==""){
 
