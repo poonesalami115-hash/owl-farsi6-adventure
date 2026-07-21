@@ -60,10 +60,11 @@ animation:fly 2s infinite;
 text-align:center;
 }
 
-#playerName{
+#playerName,
+#playerCode{
 width:100%;
 padding:12px;
-margin:20px 0;
+margin:15px 0;
 font-size:18px;
 border:2px solid #2196f3;
 border-radius:10px;
@@ -87,7 +88,7 @@ background:#2e7d32;
 
 .topBar{
 display:flex;
-justify-content:space-between;
+justify-content:center;
 margin:20px 0;
 font-size:20px;
 font-weight:bold;
@@ -127,8 +128,10 @@ width:100%;
 padding:14px;
 background:#2196f3;
 color:#fff;
+border:none;
 border-radius:12px;
 cursor:pointer;
+font-size:18px;
 }
 
 .answer:hover{
@@ -146,13 +149,11 @@ font-weight:bold;
 }
 
 .correct{
-display:block;
 background:#c8f7c5;
 color:#1b5e20;
 }
 
 .wrong{
-display:block;
 background:#ffcdd2;
 color:#b71c1c;
 }
@@ -164,6 +165,7 @@ text-align:center;
 #result{
 font-size:24px;
 margin:20px 0;
+line-height:2;
 color:#2e7d32;
 }
 
