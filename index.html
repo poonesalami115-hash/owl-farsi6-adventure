@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>مأموریت جغد دانا</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -12,9 +15,13 @@
 <div id="game">
 
 <header>
+
 <h1>🦉 مأموریت جغد دانا</h1>
+
 <h2>👩‍🏫 آموزگار: پونه سلامی</h2>
+
 <p>فارسی ششم دبستان - درس اول</p>
+
 </header>
 
 <section id="startPage">
@@ -23,12 +30,17 @@
 
 <h2>به بازی خوش آمدی</h2>
 
-<p>نام خود را وارد کن.</p>
+<p>نام و کد ملی خود را وارد کن.</p>
 
 <input
 id="playerName"
 type="text"
 placeholder="نام دانش‌آموز">
+
+<input
+id="playerCode"
+type="text"
+placeholder="کد ملی یا شماره دانش‌آموزی">
 
 <button id="startBtn">
 شروع بازی
@@ -44,8 +56,6 @@ placeholder="نام دانش‌آموز">
 ⭐ امتیاز:
 <span id="score">0</span>
 </div>
-
-
 
 </div>
 
@@ -63,12 +73,12 @@ placeholder="نام دانش‌آموز">
 
 <section id="finishPage" class="hide">
 
-<h1>🏆 تبریک</h1>
+<h1>🏆 پایان آزمون</h1>
 
 <p id="result"></p>
 
 <button onclick="location.reload()">
-🔄 بازی دوباره
+🔄 آزمون دوباره
 </button>
 
 </section>
@@ -79,4 +89,5 @@ placeholder="نام دانش‌آموز">
 <script src="game.js"></script>
 
 </body>
+
 </html>
