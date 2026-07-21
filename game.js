@@ -1,15 +1,15 @@
-تحlet i=0;
+let i=0;
 let score=0;
-
 let secondChance=false;
-let finished=false;
 
 const startPage=document.getElementById("startPage");
 const quizPage=document.getElementById("quizPage");
 const finishPage=document.getElementById("finishPage");
 
 const startBtn=document.getElementById("startBtn");
+
 const playerName=document.getElementById("playerName");
+const playerCode=document.getElementById("playerCode");
 
 const question=document.getElementById("question");
 const answers=document.getElementById("answers");
@@ -23,21 +23,33 @@ const correctSound=new Audio("correct.m4a");
 const wrongSound=new Audio("wrong.m4a");
 
 startBtn.onclick=startGame;
+
 function startGame(){
 
+const name=playerName.value.trim();
+const code=playerCode.value.trim();
 
-
-if(playerName.value.trim()==""){
-
+if(name==""){
 alert("نام خود را وارد کنید.");
 return;
+}
 
+if(code==""){
+alert("کد ملی یا شماره دانش‌آموزی را وارد کنید.");
+return;
+}
+
+const today=new Date().toLocaleDateString("fa-IR");
+const key="quiz_"+code;
+
+if(localStorage.getItem(key)==today){
+alert("شما امروز این آزمون را انجام داده‌اید.");
+return;
 }
 
 i=0;
 score=0;
 secondChance=false;
-finished=false;
 
 scoreBox.textContent=score;
 
@@ -62,7 +74,6 @@ bar.style.width=((i/questions.length)*100)+"%";
 question.textContent=(i+1)+". "+q.q;
 
 answers.innerHTML="";
-
 message.style.display="none";
 
 q.a.forEach(function(answer,index){
@@ -70,10 +81,19 @@ q.a.forEach(function(answer,index){
 const btn=document.createElement("button");
 
 btn.className="answer";
-
 btn.textContent=answer;
 
 btn.onclick=function(){
+
+checkAnswer(index);
+
+};
+
+answers.appendChild(btn);
+
+});
+
+}
 
 function checkAnswer(index){
 
@@ -82,7 +102,9 @@ const correct=(index===questions[i].c);
 const buttons=document.querySelectorAll(".answer");
 
 buttons.forEach(function(btn){
+
 btn.disabled=true;
+
 });
 
 if(correct){
@@ -94,7 +116,7 @@ correctSound.currentTime=0;
 correctSound.play().catch(()=>{});
 
 message.className="correct";
-message.textContent="✅ آفرین! پاسخ درست بود.";
+message.textContent="✅ آفرین، درست گفتی.";
 message.style.display="block";
 
 secondChance=false;
@@ -106,9 +128,13 @@ message.style.display="none";
 i++;
 
 if(i>=questions.length){
-endGame(true);
+
+endGame();
+
 }else{
+
 showQuestion();
+
 }
 
 },1200);
@@ -129,6 +155,7 @@ message.style.display="block";
 setTimeout(function(){
 
 message.style.display="none";
+
 showQuestion();
 
 },1500);
@@ -137,26 +164,29 @@ showQuestion();
 
 secondChance=false;
 
-setTimeout(function(){
-
 i++;
 
 if(i>=questions.length){
-endGame(true);
+
+endGame();
+
 }else{
+
 showQuestion();
-}
-
-},500);
 
 }
 
 }
 
 }
-function endGame(win){
 
-localStorage.setItem("finishedQuiz","yes");
+}
+function endGame(){
+
+const today=new Date().toLocaleDateString("fa-IR");
+const code=playerCode.value.trim();
+
+localStorage.setItem("quiz_"+code,today);
 
 quizPage.classList.add("hide");
 finishPage.classList.remove("hide");
@@ -172,10 +202,18 @@ medal="🥈 مدال نقره";
 }
 
 result.innerHTML=
-"🎉 آفرین <b>"+playerName.value+
-"</b><br><br>"+
-"⭐ امتیاز نهایی: "+score+
-"<br>"+medal+
-"<br><br>👩‍🏫 آموزگار: پونه سلامی";
+"🏆 پایان آزمون<br><br>"+
+"👤 <b>"+playerName.value+"</b><br><br>"+
+"🆔 کد ملی: "+code+
+"<br><br>"+
+"⭐ امتیاز نهایی: "+score+" از "+(questions.length*5)+
+"<br><br>"+
+medal+
+"<br><br>"+
+"📅 تاریخ: "+today+
+"<br><br>"+
+"📸 لطفاً از این صفحه اسکرین‌شات بگیرید و برای آموزگار ارسال کنید."+
+"<br><br>"+
+"👩‍🏫 آموزگار: پونه سلامی";
 
 }
