@@ -24,10 +24,10 @@ const owl=document.getElementById("owl");
 
 const bgMusic=document.getElementById("bgMusic");
 
-const correctSound=new Audio("sounds/correct.mp3");
-const wrongSound=new Audio("sounds/wrong.mp3");
+const correctSound=new Audio("correct.mp3");
+const wrongSound=new Audio("wrong.mp3");
 
-const bgMusic=document.getElementById("bgMusic");
+<audio id="bgMusic" src="background.mp3" loop></audio>
 startBtn.onclick=startGame;
 
 function speak(text){
