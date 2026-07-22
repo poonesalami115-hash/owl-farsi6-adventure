@@ -26,6 +26,8 @@ const bgMusic=document.getElementById("bgMusic");
 
 const correctSound=new Audio("sounds/correct.mp3");
 const wrongSound=new Audio("sounds/wrong.mp3");
+
+const bgMusic=document.getElementById("bgMusic");
 startBtn.onclick=startGame;
 
 function speak(text){
