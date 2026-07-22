@@ -5,8 +5,7 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>🦉 مأموریت جغد دانا</title>
 
@@ -20,193 +19,7 @@ content="width=device-width,initial-scale=1.0">
 
 <header>
 
-<div id="owl">
-
-🦉
-
-</div>
-
-<h1>مأموریت جغد دانا</h1>
-
-<h2>
-
-👩‍🏫 آموزگار:
-پونه سلامی
-
-</h2>
-
-<p>
-
-فارسی ششم دبستان
-
-درس اول
-
-</p>
-
-</header>
-
-<!-- صفحه شروع -->
-
-<section id="startPage">
-
-<h2>
-
-به بازی خوش آمدی
-
-</h2>
-
-<p>
-
-امروز آماده‌ای
-مأموریت جغد دانا را آغاز کنی؟
-
-</p>
-
-<input
-
-id="playerName"
-
-type="text"
-
-placeholder="نام دانش‌آموز">
-
-<input
-
-id="playerCode"
-
-type="text"
-
-placeholder="کد ملی یا شماره دانش‌آموزی">
-
-<button id="startBtn">
-
-🚀 شروع مأموریت
-
-</button>
-
-</section>
-
-<!-- صفحه سوال -->
-
-<section
-
-id="quizPage"
-
-class="hide">
-
-<div class="topBar">
-
-<div>
-
-⭐ امتیاز
-
-<span id="score">
-
-0
-
-</span>
-
-</div>
-
-<div>
-
-📊
-
-<span id="percent">
-
-0%
-
-</span>
-
-</div>
-
-</div>
-
-<div class="progress">
-
-<div id="bar">
-
-</div>
-
-</div>
-
-<h2 id="question">
-
-</h2>
-
-<div id="answers">
-
-</div>
-
-<div id="message">
-
-</div>
-
-</section>
-
-<!-- پایان بازی -->
-
-<section
-
-id="finishPage"
-
-class="hide">
-
-<h1>
-
-🏆 پایان مأموریت
-
-</h1>
-
-<div id="certificate">
-
-<p id="result">
-
-</p>
-
-</div>
-
-<div id="fireworks">
-
-</div>
-
-<button id="shotBtn">
-
-📸 ثبت نتیجه
-
-</button>
-
-<button onclick="location.reload()">
-
-🔄 بازی دوباره
-
-</button>
-
-</section>
-
-</div>
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>🦉 مأموریت جغد دانا</title>
-
-<link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-
-<div id="game">
-
-<header>
-
-<div id="owl">🦉</div>
+<div id="owl" class="owl">🦉</div>
 
 <h1>مأموریت جغد دانا</h1>
 
@@ -233,9 +46,7 @@ type="text"
 placeholder="کد ملی یا شماره دانش‌آموزی">
 
 <button id="startBtn">
-
 🚀 شروع بازی
-
 </button>
 
 </section>
@@ -245,17 +56,13 @@ placeholder="کد ملی یا شماره دانش‌آموزی">
 <div class="topBar">
 
 <div>
-
 ⭐ امتیاز:
 <span id="score">0</span>
-
 </div>
 
 <div>
-
 📊
 <span id="percent">0%</span>
-
 </div>
 
 </div>
@@ -287,31 +94,22 @@ placeholder="کد ملی یا شماره دانش‌آموزی">
 <div id="fireworks"></div>
 
 <button id="shotBtn">
-
 📸 ثبت نتیجه
-
 </button>
 
 <button onclick="location.reload()">
-
 🔄 بازی دوباره
-
 </button>
 
 </section>
 
 </div>
 
-<!-- موسیقی پس‌زمینه -->
-
-<audio
-id="bgMusic"
-src="background.mp3"
-loop>
+<audio id="bgMusic" preload="auto" loop>
+<source src="background.mp3" type="audio/mpeg">
 </audio>
 
 <script src="questions.js"></script>
-
 <script src="game.js"></script>
 
 </body>
