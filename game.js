@@ -26,13 +26,30 @@ const bgMusic = document.getElementById("bgMusic");
 const correctSound = new Audio("correct.mp3");
 const wrongSound = new Audio("wrong.mp3");
 
+correctSound.preload = "auto";
+wrongSound.preload = "auto";
+
+if(bgMusic){
+
+bgMusic.volume = 0.25;
+
+}
+
 startBtn.onclick = startGame;
 
-function speak(text){
+function showMessage(text,type){
 
-message.className = "correct";
-message.innerHTML = "🦉 " + text;
+message.className = type;
+
+message.innerHTML = text;
+
 message.style.display = "block";
+
+}
+
+function hideMessage(){
+
+message.style.display = "none";
 
 }
 
@@ -41,6 +58,7 @@ function owlHappy(){
 if(!owl) return;
 
 owl.classList.remove("owlSad");
+
 owl.classList.add("owlHappy");
 
 setTimeout(function(){
@@ -56,6 +74,7 @@ function owlSad(){
 if(!owl) return;
 
 owl.classList.remove("owlHappy");
+
 owl.classList.add("owlSad");
 
 setTimeout(function(){
@@ -100,26 +119,29 @@ percentBox.textContent="0%";
 
 bar.style.width="0%";
 
-message.style.display="none";
+hideMessage();
 
 startPage.classList.add("hide");
 finishPage.classList.add("hide");
 quizPage.classList.remove("hide");
 
 if(bgMusic){
-bgMusic.volume=0.25;
+
+bgMusic.currentTime=0;
+
 bgMusic.play().catch(function(){});
+
 }
 
-speak("سلام دوست من، آماده‌ای؟");
+showMessage("🦉 سلام دوست من! آماده‌ای مأموریت را شروع کنیم؟","correct");
 
 setTimeout(function(){
 
-message.style.display="none";
+hideMessage();
 
 showQuestion();
 
-},1500);
+},1800);
 
 }
 
@@ -129,11 +151,11 @@ const q=questions[i];
 
 bar.style.width=((i/questions.length)*100)+"%";
 
-question.textContent=(i+1)+". "+q.q;
+question.textContent=(i+1)+"- "+q.q;
 
 answers.innerHTML="";
 
-message.style.display="none";
+hideMessage();
 
 q.a.forEach(function(answer,index){
 
@@ -171,8 +193,10 @@ score+=5;
 scoreBox.textContent=score;
 
 if(percentBox){
+
 percentBox.textContent=
 Math.round((score/(questions.length*5))*100)+"%";
+
 }
 
 correctSound.currentTime=0;
@@ -180,71 +204,82 @@ correctSound.play().catch(function(){});
 
 owlHappy();
 
-message.className="correct";
-message.innerHTML="🦉 آفرین، درست گفتی.";
-message.style.display="block";
+showMessage("🦉 آفرین، درست گفتی.","correct");
 
 secondChance=false;
 
 setTimeout(function(){
 
-message.style.display="none";
+hideMessage();
 
 i++;
 
 if(i>=questions.length){
+
 endGame();
+
 }else{
+
 showQuestion();
+
 }
 
 },1500);
 
 }else{
 
-wrongSound.currentTime=0;
-wrongSound.play().catch(function(){});
-
-owlSad();
-
-if(!secondChance){
-
-secondChance=true;
-
-message.className="wrong";
-message.innerHTML="🦉 اشکالی ندارد، یک بار دیگر فکر کن.";
-message.style.display="block";
-
-setTimeout(function(){
-
-message.style.display="none";
-showQuestion();
-
-},1800);
-
-}else{
+if(secondChance){
 
 secondChance=false;
 
 const correctAnswer=q.a[q.c];
 
-message.className="wrong";
-message.innerHTML="✅ پاسخ صحیح:<br><br><b>"+correctAnswer+"</b>";
-message.style.display="block";
+showMessage(
+"❌ پاسخ صحیح:<br><br><b>"+correctAnswer+"</b>",
+"wrong"
+);
 
 setTimeout(function(){
 
-message.style.display="none";
+hideMessage();
 
 i++;
 
 if(i>=questions.length){
+
 endGame();
+
 }else{
+
 showQuestion();
+
 }
 
-},2500);
+},3000);
+
+}else{
+
+secondChance=true;
+
+wrongSound.currentTime=0;
+wrongSound.play().catch(function(){});
+
+owlSad();
+
+showMessage(
+"🦉 اشکالی ندارد، دوباره فکر کن.",
+"wrong"
+);
+
+buttons.forEach(function(btn){
+btn.disabled=false;
+});
+
+setTimeout(function(){
+
+hideMessage();
+
+},1500);
 
 }
 
@@ -255,8 +290,10 @@ showQuestion();
 function endGame(){
 
 if(bgMusic){
+
 bgMusic.pause();
 bgMusic.currentTime=0;
+
 }
 
 const today=new Date().toLocaleDateString("fa-IR");
@@ -274,9 +311,13 @@ const percent=Math.round((score/(questions.length*5))*100);
 let medal="🥉 مدال برنز";
 
 if(score>=90){
+
 medal="🥇 مدال طلا";
+
 }else if(score>=70){
+
 medal="🥈 مدال نقره";
+
 }
 
 result.innerHTML=
@@ -310,6 +351,18 @@ fw.innerHTML=Math.random()>0.5
 :"✨ 🎆 🎇 ✨ 🎇 🎆";
 
 },600);
+
+}
+
+const shotBtn=document.getElementById("shotBtn");
+
+if(shotBtn){
+
+shotBtn.onclick=function(){
+
+alert("📸 لطفاً از نتیجه اسکرین‌شات بگیرید و برای آموزگار ارسال کنید.");
+
+};
 
 }
 
