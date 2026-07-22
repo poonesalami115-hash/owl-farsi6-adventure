@@ -24,9 +24,8 @@ const owl=document.getElementById("owl");
 
 const bgMusic=document.getElementById("bgMusic");
 
-const correctSound=new Audio("sounds/correct.m4a");
-const wrongSound=new Audio("sounds/wrong.m4a");
-
+const correctSound=new Audio("sounds/correct.mp3");
+const wrongSound=new Audio("sounds/wrong.mp3");
 startBtn.onclick=startGame;
 
 function speak(text){
